@@ -10,7 +10,9 @@ permissions:
 
 jobs:
   checks:
-    runs-on: windows-latest
+    # Portable checks run on Ubuntu. Native Windows ACL and UXP host evidence
+    # remains part of the documented Windows acceptance gate.
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository
