@@ -1,0 +1,19 @@
+{
+  "extends": "../../../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "noEmit": true,
+    "baseUrl": "../../../..",
+    "paths": {
+      "@sol/protocol": ["packages/protocol/src/index.ts"]
+    },
+    "rootDir": "../../../..",
+    "types": ["node", "vitest/globals"]
+  },
+  "include": [
+    "./*.ts",
+    "../*.ts"
+  ]
+}

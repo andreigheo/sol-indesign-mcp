@@ -1,0 +1,238 @@
+:root {
+  color-scheme: light dark;
+  --surface-0: #202124;
+  --surface-1: #292b2f;
+  --surface-2: #33363b;
+  --line: #4b4f56;
+  --line-strong: #6b7079;
+  --text: #f3f4f6;
+  --muted: #aeb2ba;
+  --faint: #81868f;
+  --ready: #78c79a;
+  --working: #e3b75e;
+  --error: #ee8a8a;
+  --focus: #65baff;
+  --cyan: #00a7d7;
+  --magenta: #dd2b79;
+  --yellow: #efc900;
+  --registration: #111216;
+  --radius: 3px;
+  font-family: "Segoe UI Variable", "Segoe UI", sans-serif;
+  font-size: 12px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --surface-0: #e9eaec;
+    --surface-1: #f6f6f7;
+    --surface-2: #ffffff;
+    --line: #c5c7cb;
+    --line-strong: #969aa1;
+    --text: #24262a;
+    --muted: #5e6269;
+    --faint: #777c84;
+    --registration: #17181b;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  min-width: 280px;
+  min-height: 420px;
+  margin: 0;
+  background: var(--surface-0);
+  color: var(--text);
+}
+
+button, input { font: inherit; }
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.console {
+  min-height: 100vh;
+  padding: 12px;
+}
+
+.registration-strip {
+  display: flex;
+  height: 4px;
+  margin: -12px -12px 14px;
+}
+
+.registration-strip > span { flex: 1 1 25%; }
+
+.registration-strip__cyan { background: var(--cyan); }
+.registration-strip__magenta { background: var(--magenta); }
+.registration-strip__yellow { background: var(--yellow); }
+.registration-strip__black { background: var(--registration); }
+
+.masthead,
+.document-state__header,
+.diagnostics__heading,
+.pairing__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.eyebrow,
+.state-card__label,
+.pairing__label {
+  margin: 0 0 5px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 660;
+  letter-spacing: -.03em;
+}
+
+.version,
+.queue,
+.telemetry-row,
+.diagnostics__message,
+.diagnostics__error {
+  font-family: "Cascadia Mono", "Consolas", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.version {
+  padding: 3px 5px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.signal-chain {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 18px 0 12px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  background: var(--surface-1);
+}
+
+.signal-node {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.signal-node__lamp {
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.signal-node__lamp--ready,
+[data-state="ready"] .signal-node__lamp { border-color: var(--ready); background: var(--ready); }
+[data-state="working"] .signal-node__lamp { border-color: var(--working); background: var(--working); }
+[data-state="error"] .signal-node__lamp { border-color: var(--error); background: var(--error); }
+
+.signal-line { height: 1px; background: var(--line); flex: 1 1 12px; }
+
+.state-grid {
+  display: flex;
+  gap: 8px;
+}
+
+.state-card,
+.document-state,
+.pairing,
+.diagnostics {
+  border: 1px solid var(--line);
+  background: var(--surface-1);
+}
+
+.state-card { min-width: 0; padding: 10px; flex: 1 1 0; }
+.state-card__value { margin: 0; font-weight: 650; overflow-wrap: anywhere; }
+.state-card__hint, .form-help { margin: 5px 0 0; color: var(--faint); font-size: 10px; line-height: 1.4; }
+
+.document-state { margin-top: 8px; padding: 10px; }
+.queue { color: var(--muted); font-size: 10px; }
+.document-state__name { margin: 1px 0 11px; font-size: 14px; font-weight: 620; overflow-wrap: anywhere; }
+
+.telemetry-row {
+  display: flex;
+  margin: 0;
+}
+
+.telemetry-row > div { min-width: 0; border-left: 1px solid var(--line); padding-left: 8px; flex: 1 1 0; }
+.telemetry-row > div:first-child { border-left: 0; padding-left: 0; }
+.telemetry-row dt { margin-bottom: 3px; color: var(--faint); font-size: 9px; text-transform: uppercase; }
+.telemetry-row dd { margin: 0; overflow: hidden; color: var(--muted); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+
+.pairing { margin-top: 8px; padding: 10px; }
+.pairing__row input {
+  min-width: 0;
+  flex: 1;
+  height: 30px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 0 8px;
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.button-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.button-grid .button { flex: 1 1 45%; }
+
+.button {
+  min-height: 30px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 5px 9px;
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.button:hover { border-color: var(--text); }
+.button:active { transform: translateY(1px); }
+.button:disabled { cursor: default; opacity: .48; }
+.button--primary { border-color: #2b7fb4; background: #176b9f; color: #fff; }
+.button--quiet { color: var(--muted); }
+
+.diagnostics { margin-top: 8px; padding: 10px; }
+.text-button { border: 0; padding: 0; background: transparent; color: var(--focus); cursor: pointer; font-size: 10px; }
+.diagnostics__message, .diagnostics__error { margin: 6px 0 0; font-size: 10px; line-height: 1.5; overflow-wrap: anywhere; }
+.diagnostics__message { color: var(--muted); }
+.diagnostics__error { border-left: 2px solid var(--error); padding-left: 7px; color: var(--error); }
+
+[hidden] { display: none !important; }
+
+@media (max-width: 305px) {
+  .console { padding: 9px; }
+  .registration-strip { margin: -9px -9px 11px; }
+  .state-grid { flex-direction: column; }
+  .signal-node { font-size: 9px; }
+  .pairing__row { align-items: stretch; flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .001ms !important;
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

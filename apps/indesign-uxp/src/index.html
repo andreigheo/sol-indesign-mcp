@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sol InDesign MCP Bridge</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="console" aria-labelledby="panel-title">
+      <div class="registration-strip" aria-hidden="true">
+        <span class="registration-strip__cyan"></span>
+        <span class="registration-strip__magenta"></span>
+        <span class="registration-strip__yellow"></span>
+        <span class="registration-strip__black"></span>
+      </div>
+
+      <header class="masthead">
+        <div>
+          <p class="eyebrow">Local automation control</p>
+          <h1 id="panel-title">Sol Bridge</h1>
+        </div>
+        <span class="version" id="plugin-version">v0.1.0</span>
+      </header>
+
+      <section class="signal-chain" aria-label="Bridge connection chain">
+        <div class="signal-node" data-node="codex">
+          <span class="signal-node__lamp" aria-hidden="true"></span>
+          <span>Codex</span>
+        </div>
+        <span class="signal-line" aria-hidden="true"></span>
+        <div class="signal-node" data-node="bridge">
+          <span class="signal-node__lamp" aria-hidden="true"></span>
+          <span>Local bridge</span>
+        </div>
+        <span class="signal-line" aria-hidden="true"></span>
+        <div class="signal-node" data-node="indesign">
+          <span class="signal-node__lamp signal-node__lamp--ready" aria-hidden="true"></span>
+          <span>InDesign</span>
+        </div>
+      </section>
+
+      <div class="state-grid">
+        <section class="state-card" aria-labelledby="authentication-label">
+          <p class="state-card__label" id="authentication-label">Authentication</p>
+          <p class="state-card__value" id="authentication-state">Unpaired</p>
+          <p class="state-card__hint" id="authentication-hint">Pair the token created by setup:token.</p>
+        </section>
+        <section class="state-card" aria-labelledby="workspace-label">
+          <p class="state-card__label" id="workspace-label">Workspace</p>
+          <p class="state-card__value" id="workspace-state">Authorization required</p>
+          <p class="state-card__hint" id="workspace-hint">Select the only folder MCP may access.</p>
+        </section>
+      </div>
+
+      <section class="document-state" aria-labelledby="document-label">
+        <div class="document-state__header">
+          <p class="state-card__label" id="document-label">Active document</p>
+          <span class="queue" id="queue-state">Queue 0</span>
+        </div>
+        <p class="document-state__name" id="document-name">No document open</p>
+        <dl class="telemetry-row">
+          <div><dt>Revision</dt><dd id="document-revision">—</dd></div>
+          <div><dt>Transport</dt><dd id="transport-state">Offline</dd></div>
+          <div><dt>Heartbeat</dt><dd id="heartbeat-state">—</dd></div>
+        </dl>
+      </section>
+
+      <section class="pairing" aria-labelledby="pairing-label">
+        <p class="pairing__label" id="pairing-label">Pairing token</p>
+        <div class="pairing__row">
+          <input id="token-input" name="token" type="password" autocomplete="off" spellcheck="false" placeholder="Paste 43-character token" aria-labelledby="pairing-label" aria-describedby="pairing-help">
+          <button class="button button--primary" id="pair-token-button" type="button">Pair token</button>
+        </div>
+        <p class="form-help" id="pairing-help">Stored only in UXP secure storage. The field clears immediately.</p>
+      </section>
+
+      <div class="button-grid" role="group" aria-label="Bridge controls">
+        <button class="button" id="connect-button" type="button">Connect</button>
+        <button class="button" id="disconnect-button" type="button">Disconnect</button>
+        <button class="button" id="workspace-button" type="button">Select workspace</button>
+        <button class="button button--quiet" id="clear-workspace-button" type="button">Clear Workspace Authorization</button>
+      </div>
+
+      <section class="diagnostics" aria-labelledby="diagnostics-label">
+        <div class="diagnostics__heading">
+          <p class="state-card__label" id="diagnostics-label">Last event</p>
+          <button class="text-button" id="copy-diagnostics-button" type="button">Copy Diagnostic Information</button>
+        </div>
+        <p class="diagnostics__message" id="last-event" role="status" aria-live="polite">Panel loaded. Waiting for the local bridge.</p>
+        <p class="diagnostics__error" id="last-error" role="alert" hidden></p>
+      </section>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+artifacts/
+*.ccx
+.env
+.codex/config.toml
+*.log
+pnpm-debug.log*

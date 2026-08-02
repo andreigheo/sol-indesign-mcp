@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.22.3
+          cache: pnpm
+
+      - name: Enable pnpm
+        shell: pwsh
+        run: corepack enable
+
+      - name: Install dependencies
+        shell: pwsh
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        shell: pwsh
+        run: pnpm lint
+
+      - name: Typecheck
+        shell: pwsh
+        run: pnpm typecheck
+
+      - name: Unit tests
+        shell: pwsh
+        run: pnpm test
+
+      - name: Contract tests
+        shell: pwsh
+        run: pnpm test:contract
+
+      - name: Build
+        shell: pwsh
+        run: pnpm build
+
+      - name: Verify generated UXP bundle
+        shell: pwsh
+        run: pnpm verify:uxp

@@ -1,0 +1,47 @@
+{
+  "manifestVersion": 5,
+  "id": "com.sol.indesign-mcp",
+  "name": "Sol InDesign MCP Bridge",
+  "version": "0.1.0",
+  "main": "index.html",
+  "host": {
+    "app": "ID",
+    "minVersion": "18.5.0"
+  },
+  "entrypoints": [
+    {
+      "type": "panel",
+      "id": "sol-indesign-mcp-bridge",
+      "label": {
+        "default": "Sol InDesign MCP Bridge"
+      },
+      "minimumSize": {
+        "width": 280,
+        "height": 420
+      },
+      "maximumSize": {
+        "width": 1200,
+        "height": 1600
+      },
+      "preferredDockedSize": {
+        "width": 320,
+        "height": 620
+      },
+      "preferredFloatingSize": {
+        "width": 380,
+        "height": 680
+      }
+    }
+  ],
+  "requiredPermissions": {
+    "network": {
+      "domains": [
+        "ws://localhost:32145",
+        "http://localhost:32145"
+      ]
+    },
+    "localFileSystem": "request",
+    "clipboard": "readAndWrite",
+    "allowCodeGenerationFromStrings": false
+  }
+}

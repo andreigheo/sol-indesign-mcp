@@ -1,0 +1,33 @@
+# Copy this file to .codex/config.toml in a trusted checkout, then replace the
+# example repository paths with absolute native Windows paths. Never put the
+# SOL_INDESIGN_MCP_TOKEN value in this file. The server also reads the protected
+# LocalAppData credential created by `pnpm setup:token`.
+
+[mcp_servers.indesign]
+command = "C:\\Program Files\\nodejs\\node.exe"
+args = ["C:\\path\\to\\sol-indesign-mcp\\apps\\mcp-server\\dist\\index.js"]
+cwd = "C:\\path\\to\\sol-indesign-mcp"
+env = { SOL_INDESIGN_MCP_PORT = "32145" }
+env_vars = ["SOL_INDESIGN_MCP_TOKEN"]
+startup_timeout_sec = 20
+tool_timeout_sec = 120
+default_tools_approval_mode = "auto"
+enabled = true
+required = false
+
+# Codex 0.142.x/0.144.x does not yet parse the newer server-wide "writes" mode.
+# Keep explicit prompt approval on every document mutation or output-file tool.
+[mcp_servers.indesign.tools.indesign_create_document]
+approval_mode = "prompt"
+
+[mcp_servers.indesign.tools.indesign_apply_operations]
+approval_mode = "prompt"
+
+[mcp_servers.indesign.tools.indesign_export_preview]
+approval_mode = "prompt"
+
+[mcp_servers.indesign.tools.indesign_save_copy]
+approval_mode = "prompt"
+
+[mcp_servers.indesign.tools.indesign_export_document]
+approval_mode = "prompt"

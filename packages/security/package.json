@@ -1,0 +1,40 @@
+{
+  "name": "@sol/security",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./node": {
+      "types": "./dist/node.d.ts",
+      "import": "./dist/node.js"
+    },
+    "./uxp": {
+      "types": "./dist/uxp.d.ts",
+      "import": "./dist/uxp.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "tsc -b --clean",
+    "lint": "eslint src --max-warnings=0",
+    "test": "vitest run --root ../.. --config vitest.config.ts packages/security/src",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@noble/hashes": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.1",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

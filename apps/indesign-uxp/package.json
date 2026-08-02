@@ -1,0 +1,29 @@
+{
+  "name": "@sol/indesign-uxp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node ./build.mjs",
+    "clean": "node ./build.mjs --clean",
+    "dev": "node ./build.mjs --watch",
+    "test": "vitest run --root ../.. --config vitest.config.ts apps/indesign-uxp/src",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@noble/hashes": "2.2.0",
+    "@sol/domain": "workspace:*",
+    "@sol/protocol": "workspace:*",
+    "@sol/security": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.3",
+    "archiver": "7.0.1",
+    "esbuild": "0.28.1",
+    "typescript": "6.0.3",
+    "vitest": "4.1.10"
+  },
+  "engines": {
+    "node": "22.22.3"
+  }
+}

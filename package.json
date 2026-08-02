@@ -1,0 +1,42 @@
+{
+  "name": "sol-indesign-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A local authenticated MCP bridge between OpenAI Codex and Adobe InDesign UXP.",
+  "packageManager": "pnpm@11.13.0",
+  "engines": {
+    "node": "22.22.3"
+  },
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "build": "pnpm -r --workspace-concurrency=1 --if-present run build",
+    "build:types": "pnpm --filter @sol/protocol build && pnpm --filter @sol/domain build && pnpm --filter @sol/security build",
+    "dev:mcp": "pnpm --filter @sol/mcp-server dev",
+    "dev:uxp": "pnpm --filter @sol/indesign-uxp dev",
+    "lint": "eslint .",
+    "typecheck": "pnpm build:types && pnpm -r --workspace-concurrency=1 --if-present run typecheck",
+    "test": "vitest run --config vitest.config.ts",
+    "test:contract": "vitest run --config vitest.contract.config.ts",
+    "smoke:stdio": "node scripts/smoke-stdio.mjs",
+    "verify:uxp": "node scripts/verify-uxp-bundle.mjs",
+    "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm test:contract && pnpm build && pnpm smoke:stdio && pnpm verify:uxp && pnpm package:uxp:from-build",
+    "setup:token": "node scripts/setup-token.mjs",
+    "doctor": "node scripts/doctor.mjs",
+    "package:uxp": "node scripts/package-uxp.mjs",
+    "package:uxp:from-build": "node scripts/package-uxp.mjs --from-build",
+    "sync:uxp-host": "node scripts/sync-uxp-host.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "22.19.1",
+    "@types/ws": "8.18.1",
+    "@vitest/coverage-v8": "4.1.10",
+    "eslint": "10.7.0",
+    "fflate": "0.8.2",
+    "tsx": "4.20.6",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.64.0",
+    "vitest": "4.1.10"
+  }
+}
